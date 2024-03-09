@@ -58,19 +58,20 @@ body {
   padding: 0;
 }
 
-.Square {
-  background: #3741f0;
+.square {
+  background: #111be4;
   border: 2px solid #f87f07;
+  color: #ffffff;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 100px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 100px;
 }
 
 .board-row:after {
