@@ -11,19 +11,26 @@ export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   // array of history moves in state
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [currentMove, setCurrentMove] = useState(0); // to keep track of which step the user is viewing.
   const currentSquares = history[history.length - 1];
 
   function handlePlay(nextSquares) {
     // create a new array that contains all the items in history followed by nextSquares
     // this merges all the arrays into groups in only 1 array.
-    setHistory([...history, nextSquares]);
+    // setHistory([...history, nextSquares]);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length -1);
     setXIsNext(!xIsNext);
   }
   // Transform history of moves into react elements representing buttons on the screen
   function jumpTo(nextMove) {
-    // TODO
+    // update currentMove
+    setCurrenteMove(nextMove);
+    setXIsNext(nextMove % 2 === 0); // if "nextMove" is even, setXIsNext to nextMove
   }
-  const moves = history.map((squares, move) => {
+  // squares arg goes through each element in the array "history" , while "move" goes through each index of the array "history"
+  const moves = history.map((squares, move) => { // map over the history array to tranform it into another array of React elements representing buttons
     let description;
     if (move > 0) {
       description = "Go to move #" + move;
@@ -31,8 +38,10 @@ export default function Game() {
       description = "Go to game start";
     }
     return (
-      // list of items tha contains buttons
-      <li>
+      // list of items tha contains buttons for the user to jump to previous moves
+      // For each move, a list is created. 
+      <li key={move}> {/**using the  the array index as key so each move will sequentially be assigned a number.  It's strongly recommended
+       * to assign propoer keys when dealing with dynamic lists. */}
         {/*onClick call the function jumpTo */}
         <button onClick={() => jumpTo(move)}> {description} </button>
       </li>
@@ -83,25 +92,25 @@ function Board({ xIsNext, squares, onPlay }) {
     <>
       <div className="status"> {status} </div>
       <div className="board-row">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        <SquareFunction value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <SquareFunction value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <SquareFunction value={squares[2]} onSquareClick={() => handleClick(2)} />
       </div>
       <div className="board-row">
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        <SquareFunction value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <SquareFunction value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <SquareFunction value={squares[5]} onSquareClick={() => handleClick(5)} />
       </div>
       <div className="board-row">
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        <SquareFunction value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <SquareFunction value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <SquareFunction value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </>
   );
 }
 
-function Square({ value, onSquareClick }) {
+function SquareFunction({ value, onSquareClick }) {
   // set state of each click
   //const [value, setValue] = useState(null)
   // function handleClick(){

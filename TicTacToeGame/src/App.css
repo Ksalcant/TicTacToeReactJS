@@ -1,6 +1,6 @@
 
 
-* {
+*{
   box-sizing: border-box;
 }
 
@@ -58,9 +58,9 @@ body {
   padding: 0;
 }
 
-.square {
-  background: #ed9292;
-  border: 1px solid #eef1ee;
+.Square {
+  background: #3741f0;
+  border: 2px solid #f87f07;
   float: left;
   font-size: 24px;
   font-weight: bold;
