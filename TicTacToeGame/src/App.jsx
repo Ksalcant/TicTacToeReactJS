@@ -94,7 +94,7 @@ export default function Game() {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquareArray];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length -1);
-    setxIsNext(!xIsNext);
+    setxIsNext(!xIsNext); // flip the boolean for the next player's turn
   }
 
   // Transform history of moves into react elements representing buttons on the screen
