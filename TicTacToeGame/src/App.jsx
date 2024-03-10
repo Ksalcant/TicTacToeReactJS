@@ -40,7 +40,7 @@ function Board({ xIsNext, SquareArray, onPlay }) {
     }
     onPlay(nextSquareArray);
     // setSquareArray(nextSquareArray);
-    // setXIsNext(!xIsNext);
+    // setXIsNext(!xIsNext); // flip the boolean for next player's turn
   }
  
   // const [xIsNext, setXIsNext] = useState(true);
