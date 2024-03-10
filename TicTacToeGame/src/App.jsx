@@ -32,14 +32,14 @@ function Board({ xIsNext, SquareArray, onPlay }) {
       return;
     }
     // copy the SquareArray array
-    const nextSquareArray = SquareArray.slice();
+    const copyOfSquaresArray = SquareArray.slice();
     if (xIsNext) {
-      nextSquareArray[i] = "X";
+      copyOfSquaresArray[i] = "X";
     } else {
-      nextSquareArray[i] = "O";
+      copyOfSquaresArray[i] = "O";
     }
-    onPlay(nextSquareArray);
-    // setSquareArray(nextSquareArray);
+    onPlay(copyOfSquaresArray);
+    // setSquareArray(copyOfSquaresArray);
     // setXIsNext(!xIsNext); // flip the boolean for next player's turn
   }
  
@@ -87,11 +87,11 @@ export default function Game() {
   const [xIsNext, setxIsNext] = useState(true);
   //const xIsNext = currentMove % 2 ===0;
   
-  function handlePlay(nextSquareArray) {
-    // create a new array that contains all the items in history followed by nextSquareArray
+  function handlePlay(copyOfSquaresArray) {
+    // create a new array that contains all the items in history followed by copyOfSquaresArray
     // this merges all the arrays into groups in only 1 array.
-    // setHistory([...history, nextSquareArray]);
-    const nextHistory = [...history.slice(0, currentMove + 1), nextSquareArray];
+    // setHistory([...history, copyOfSquaresArray]);
+    const nextHistory = [...history.slice(0, currentMove + 1), copyOfSquaresArray];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length -1);
     setxIsNext(!xIsNext); // flip the boolean for the next player's turn
